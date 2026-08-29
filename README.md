@@ -274,7 +274,8 @@ AI-Visual-Search/
 │   │   ├──image_hash.py
 │   │   ├──similarity.py
 │   │   ├──vector_store.py  
-│   └── main.py    
+│   ├──main.py  
+│   └──requirements.txt  
 └── frontend/
     ├── src/
     │   ├── app/
