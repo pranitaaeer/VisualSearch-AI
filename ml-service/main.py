@@ -6,7 +6,6 @@ from services.image_embedding import generate_image_embedding
 from services.similarity import cosine_similarity
 from services.vector_store import (create_collection,store_embedding,search_similar_images,get_all_images,)
 from services.image_hash import  (generate_image_hash, is_near_duplicate,)
-from services.image_classifier import classify_image
 
 app = FastAPI(title="VisualSearch AI ML Service")
 
@@ -21,6 +20,8 @@ def health():
 
 @app.post("/classify")
 async def classify(file: UploadFile = File(...)):
+    from services.image_classifier import classify_image
+
     # Check image type
     if not file.content_type or not file.content_type.startswith("image/"):
         raise HTTPException(

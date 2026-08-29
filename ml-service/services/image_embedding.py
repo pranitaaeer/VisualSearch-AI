@@ -1,23 +1,41 @@
 import torch
+
 from PIL import Image
 from transformers import CLIPProcessor, CLIPModel
 
 
 MODEL_NAME = "openai/clip-vit-base-patch32"
 
-processor = CLIPProcessor.from_pretrained(MODEL_NAME)
-
-model = CLIPModel.from_pretrained(
-    MODEL_NAME,
-    torch_dtype=torch.float32
-)
-
-# CPU inference
-model = model.to("cpu")
-model.eval()
+processor = None
+model = None
 
 
-def generate_image_embedding(image: Image.Image):
+def load_model():
+    global processor, model
+
+    if model is None:
+        print("Loading CLIP model...")
+
+        processor = CLIPProcessor.from_pretrained(
+            MODEL_NAME
+        )
+
+        model = CLIPModel.from_pretrained(
+            MODEL_NAME,
+            torch_dtype=torch.float32
+        )
+
+        # CPU inference
+        model = model.to("cpu")
+        model.eval()
+
+        print("CLIP model loaded successfully")
+
+
+def generate_image_embedding(
+    image: Image.Image
+):
+    load_model()
 
     image = image.convert("RGB")
 
