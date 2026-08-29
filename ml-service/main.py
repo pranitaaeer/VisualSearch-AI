@@ -2,7 +2,6 @@ from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from PIL import Image
 from io import BytesIO
 
-from services.image_classifier import classify_image
 from services.image_embedding import generate_image_embedding
 from services.similarity import cosine_similarity
 from services.vector_store import (create_collection,store_embedding,search_similar_images,get_all_images,)
@@ -20,7 +19,7 @@ def health():
 
 @app.post("/classify")
 async def classify(file: UploadFile = File(...)):
-
+ from services.image_classifier import classify_image
     # Check image type
     if not file.content_type or not file.content_type.startswith("image/"):
         raise HTTPException(
