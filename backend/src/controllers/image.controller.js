@@ -12,7 +12,6 @@ export const searchSimilarImages = async (req, res) => {
       });
     }
 
-    // Upload image temporarily so Google Lens can access it
     const uploadResult = await uploadToUploadThing(
       req.file
     );
