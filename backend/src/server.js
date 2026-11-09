@@ -7,7 +7,7 @@ const app = express();
 
 app.use(
   cors({
-    origin:"https://visual-search-ai.vercel.app/",
+    origin:"https://visual-search-ai.vercel.app",
     Credentials:true
   })
 );
