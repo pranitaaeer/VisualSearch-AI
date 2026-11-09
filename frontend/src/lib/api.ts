@@ -25,7 +25,7 @@ export const searchImages = async (
   formData.append("file", file);
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/images/search`,
+    "https://visualsearch-ai-jrvj.onrender.com/api/images/search",
     {
       method: "POST",
       body: formData,
